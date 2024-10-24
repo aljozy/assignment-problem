@@ -1,0 +1,42 @@
+services:
+  webapp:
+    build: .
+    depends_on: 
+      - db
+    ports:
+      - "9001:3000"
+    networks:
+      - frontend
+    volumes:
+      - myapp:/var/lib/app
+  proxy:
+    image: nginx:latest
+    depends_on:
+      - webapp
+    networks:
+      - frontend
+    ports:
+      - "9000:80"
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE : 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+      
+    ports:
+      - "3306:3306"
+    networks:
+      - db
+    volumes:
+      - my-db:/var/lib/mysql
+
+networks:
+  frontend:
+    driver: bridge
+  db:
+    driver: bridge
+volumes:
+  myapp:
+  my-db:
