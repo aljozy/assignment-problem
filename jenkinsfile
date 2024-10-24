@@ -9,7 +9,7 @@ pipeline {
             steps {
                 script {
                     def scmVars = checkout scm
-                    echo "Checked out ${scmVars.GIT_URL} with branch ${scmVars.GIT_BRANCH}"
+                    echo "checking ${scmVars.GIT_URL} with branch ${scmVars.GIT_BRANCH}"
                 }
             }
         }
