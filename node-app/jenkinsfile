@@ -1,7 +1,9 @@
 pipeline {
-    agent {
-      docker {image "ubuntu:latest"}
-    }
+
+  agent any
+    // agent {
+    //   docker {image "ubuntu:latest"}
+    // }
     stages {
         stage('Checkout SCM') {
             steps {
