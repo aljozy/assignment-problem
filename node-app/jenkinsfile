@@ -1,6 +1,15 @@
 pipeline {
   agent any
   stages{
+     stages {
+        stage('Checkout SCM') {
+            steps {
+                script {
+                    def scmVars = checkout scm
+                    echo "Checked out ${scmVars.GIT_URL} with branch ${scmVars.GIT_BRANCH}"
+                }
+            }
+        }
     stage('Clone the repos'){
       steps{
         echo 'cloning the repository'
