@@ -14,8 +14,8 @@ pipeline {
         stage('Clone the repos') {
             steps {
                 echo 'cloning the repository'
-                sh 'git clone https://github.com/aljozy/assignment-problem.git'
-                // git url: 'https://github.com/aljozy/assignment-problem.git'
+                // sh 'git clone https://github.com/aljozy/assignment-problem.git'
+                git url: 'https://github.com/aljozy/assignment-problem.git'
             }
         }
         stage('Build') {
