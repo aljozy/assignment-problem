@@ -1,7 +1,6 @@
 pipeline {
-  agent any
-  stages{
-     stages {
+    agent any
+    stages {
         stage('Checkout SCM') {
             steps {
                 script {
@@ -10,27 +9,23 @@ pipeline {
                 }
             }
         }
-    stage('Clone the repos'){
-      steps{
-        echo 'cloning the repository'
-        git 'https://github.com/aljozy/assignment-problem.git'
+        stage('Clone the repos') {
+            steps {
+                echo 'cloning the repository'
+                git url: 'https://github.com/aljozy/assignment-problem.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo "Build the application on docker"
+                sh 'docker build . -t preview:v1'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploying the app on the port 3000"
+                sh 'docker run -d --rm -p 3000:3000 preview:v1'
+            }
+        }
     }
-    }
-    stage('Build'){
-      steps{
-        echo "Build the application on docker"
-        sh 'docker build . -t preview:v1'
-
-      }
-    }
-    stage('Deploy'){
-      steps{
-        echo "Deploying the app on the port 3000"
-       sh 'docker run -d  --rm -p 3000:3000'
-      }
-    }
-  }
- 
-  }
 }
-
