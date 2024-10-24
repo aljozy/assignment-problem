@@ -3,7 +3,7 @@ pipeline{
         docker {image "node:latest"}
     }
     stages{
-        stages{
+        
             stage("Build"){
                 steps{
                     sh 'npm run install'
@@ -11,7 +11,7 @@ pipeline{
 
                 }
 
-            }
+            
             stage('Running the app'){
                 steps{
                     sh 'node server.js'
