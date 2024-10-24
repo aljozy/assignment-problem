@@ -14,13 +14,14 @@ pipeline {
         stage('Clone the repos') {
             steps {
                 echo 'cloning the repository'
-                git url: 'https://github.com/aljozy/assignment-problem.git'
+                sh 'git clone https://github.com/aljozy/assignment-problem.git'
+                // git url: 'https://github.com/aljozy/assignment-problem.git'
             }
         }
         stage('Build') {
             steps {
                 echo "Build the application on docker"
-                sh 'docker build . -t preview:v1'
+                sh 'docker buildx build . -t preview:v1'
             }
         }
         stage('Deploy') {
