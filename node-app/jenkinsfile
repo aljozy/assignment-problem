@@ -1,42 +1,21 @@
-pipeline {
-
-  agent any
-  /*
+pipeline{
     agent {
-      docker {image "ubuntu:latest"}
+        docker (image "ubuntu:latest")
     }
-    */
-    stages {
-        /*
-        stage('Checkout SCM') {
+    stages{
+        stages{
+            stage("Build"){
+                steps{
+                    sh 'npm run install'
+                    
 
-           
-            steps {
-                script {
-                    def scmVars = checkout scm
-                    echo "checking ${scmVars.GIT_URL} with branch ${scmVars.GIT_BRANCH}"
                 }
+
             }
-            
-        }
-        */
-        stage('Clone the repos') {
-            steps {
-                echo 'cloning the repository'
-                // sh 'git clone https://github.com/aljozy/assignment-problem.git'
-                git url: 'https://github.com/aljozy/assignment-problem.git'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo "Build the application on docker"
-                sh 'docker buildx build . -t preview:v1'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo "Deploying the app on the port 3000"
-                sh 'docker run -d --rm -p 3000:3000 preview:v1'
+            stage('Running the app'){
+                steps{
+                    sh 'node server.js'
+                }
             }
         }
     }
