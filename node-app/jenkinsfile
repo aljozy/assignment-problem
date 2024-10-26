@@ -5,11 +5,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "change directory"'
-               sh 'cd node-app'
-               sh 'echo "checking current directory & its contents"'
-                sh 'pwd && ls'
-                sh 'npm install'
+                sh '''
+                   echo "changing to node-app directory and listing contents"
+                   cd node-app
+                   pwd && ls
+                   npm install
+                '''
             }
         }
         stage('Running the app') {
