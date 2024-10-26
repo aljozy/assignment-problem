@@ -16,8 +16,11 @@ pipeline {
         stage('Running the app') {
             steps {
                sh '''
-                   cd node-app
-                   node server.js
+                    cd node-app
+                   node server.js &
+                   SERVER_PID=$!
+                   sleep 10  # Set this to however long you want the server to run
+                   kill $SERVER_PID
                 '''
             }
         }
