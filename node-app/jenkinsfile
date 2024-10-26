@@ -2,6 +2,7 @@ pipeline{
     agent any 
 
     stages{
+        /*
         stage('scm checkout'){
             steps{
                 checkout scmGit(
@@ -10,10 +11,10 @@ pipeline{
             }
         }
 
-
+*/
         stage('clone the repo'){
             steps{
-                 git url: 'https://github.com/aljozy/assignment-problem.git'
+                 git url: 'https://github.com/aljozy/assignment-problem.git', branch:'main'
             }
         }
         stage('build'){
