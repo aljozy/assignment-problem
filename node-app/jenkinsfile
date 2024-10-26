@@ -15,7 +15,10 @@ pipeline {
         }
         stage('Running the app') {
             steps {
-                sh 'node server.js'
+               sh '''
+                   cd node-app
+                   node server.js
+                '''
             }
         }
     }
