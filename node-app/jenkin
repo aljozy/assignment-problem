@@ -1,0 +1,28 @@
+pipeline {
+    agent {
+        docker { image 'node:lts-slim' }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh '''
+                   echo "changing to node-app directory and listing contents"
+                   cd node-app
+                   pwd && ls
+                   npm install --cache .npm-cache --no-audit --no-fund
+                '''
+            }
+        }
+        stage('Running the app') {
+            steps {
+               sh '''
+                    cd node-app
+                   node server.js &
+                   SERVER_PID=$!
+                   sleep 10  # Set this to however long you want the server to run
+                   kill $SERVER_PID
+                '''
+            }
+        }
+    }
+}
