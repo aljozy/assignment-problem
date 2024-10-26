@@ -2,6 +2,15 @@ pipeline{
     agent any 
 
     stages{
+        stage('scm checkout'){
+            steps{
+                checkout scmGit(
+                    branches: [[name: 'main']],
+                    userRemoteConfigs: [[url: 'https://github.com/aljozy/assignment-problem.git']])
+            }
+        }
+
+
         stage('clone the repo'){
             steps{
                  git url: 'https://github.com/aljozy/assignment-problem.git'
