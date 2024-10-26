@@ -9,7 +9,7 @@ pipeline {
                    echo "changing to node-app directory and listing contents"
                    cd node-app
                    pwd && ls
-                   npm install
+                   npm install --cache .npm-cache --no-audit --no-fund
                 '''
             }
         }
