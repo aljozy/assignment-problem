@@ -5,7 +5,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd node-app'
+                sh 'echo "change directory"'
+               sh 'cd node-app'
+               sh 'echo "checking current directory & its contents"'
                 sh 'pwd && ls'
                 sh 'npm install'
             }
