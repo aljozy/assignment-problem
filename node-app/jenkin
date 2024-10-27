@@ -1,5 +1,6 @@
 pipeline {
     agent {
+        //this jenkins file works as docker as an agent
         docker { image 'node:lts-slim' }
     }
     stages {
