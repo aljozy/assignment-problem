@@ -35,9 +35,9 @@ Thumbs.db
 *.swp
 
 # GitHub Actions specific files (if you cache dependencies or generate reports)
-.github/workflows/*.log
-.github/workflows/node_modules/
-.github/actions/
+# .github/workflows/*.log
+# .github/workflows/node_modules/
+# .github/actions/
 
 # Ignore compiled TypeScript files if using TypeScript
 *.tsbuildinfo
