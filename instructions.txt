@@ -17,5 +17,4 @@ clean up all created images.
 6) Run new containers based on the re-built images, ensuring that the containers
 are removed automatically when stopped.
 
-changes
-testing the pipeline
+
